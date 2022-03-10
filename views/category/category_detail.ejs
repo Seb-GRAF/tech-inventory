@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <h1><%= category.name %></h1>
+      <ul class="product-list">
+        <% category_products.forEach(product => { %>
+        <li>
+          <a href="/product/<%= product._id %> ">
+            <h2><%= product.name %></h2>
+          </a>
+          <h3><%= product.manufacturer %></h3>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>

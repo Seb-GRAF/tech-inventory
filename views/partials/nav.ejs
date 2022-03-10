@@ -1,0 +1,23 @@
+<nav>
+  <div class="site-title">
+    <a href="/"><h1>Tech Inventory</h1></a>
+  </div>
+  <ul>
+    <li><a href="/products">All products</a></li>
+    <li><a href="/product/create">Add product</a></li>
+    <li class="categories">
+      <p>Categories</p>
+      <ul class="dropdown-menu">
+        <% if (categories.length>0) { %>
+          <% categories.forEach(category => { %>
+            <li><a href=/category/<%= category._id %> "><%= category.name %> </a></li>
+            <% }) %>
+            <% } else { %>
+              <p>No categories</p>
+            <% } %> 
+             
+      </ul>
+    </li>
+   
+  </ul>
+</nav>

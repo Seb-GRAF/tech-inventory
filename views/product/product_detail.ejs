@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <h1><%= product.name %></h1>
+      <h2><%= product.manufacturer %></h2>
+      <h2><%= product.price.toFixed(2) %> CHF</h2>
+      <p><%= product.description %></p>
+      <a href="<%= product.link %>">Link to product</a>
+      <div>
+        <% product.category.forEach(element => { %>
+        <a href="<%= element.url %>">See more <%= element.name %> </a>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
