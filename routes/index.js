@@ -13,29 +13,29 @@ router.get('/', (req, res) => {
 
 /// PRODUCT ROUTES ///
 
-// GET all products list
-router.get('/products', product_controller.product_list);
-
-// GET request for one product
-router.get('/product/:id', product_controller.product_detail);
-
 // GET request for creating product
 router.get('/product/create', product_controller.product_create_get);
 
 // POST request for creating product
-router.get('/product/create', product_controller.product_create_post);
+router.post('/product/create', product_controller.product_create_post);
 
 // GET request for deleting product
 router.get('/product/:id/delete', product_controller.product_delete_get);
 
 // POST request for deleting product
-router.get('/product/:id/delete', product_controller.product_delete_post);
+router.post('/product/:id/delete', product_controller.product_delete_post);
 
 // GET request for updating product
 router.get('/product/:id/update', product_controller.product_update_get);
 
 // POST request for updating product
 router.get('/product/:id/update', product_controller.product_update_post);
+
+// GET all products list
+router.get('/products', product_controller.product_list);
+
+// GET request for one product
+router.get('/product/:id', product_controller.product_detail);
 
 /// CATEGORY ROUTES ///
 
@@ -46,18 +46,18 @@ router.get('/category/:id', category_controller.category_detail);
 router.get('/category/create', category_controller.category_create_get);
 
 // POST request for creating category
-router.get('/category/create', category_controller.category_create_post);
+router.post('/category/create', category_controller.category_create_post);
 
 // GET request for deleting category
 router.get('/category/:id/delete', category_controller.category_delete_get);
 
 // POST request for deleting category
-router.get('/category/:id/delete', category_controller.category_delete_post);
+router.post('/category/:id/delete', category_controller.category_delete_post);
 
 // GET request for updating category
 router.get('/category/:id/update', category_controller.category_update_get);
 
 // POST request for updating category
-router.get('/category/:id/update', category_controller.category_update_post);
+router.post('/category/:id/update', category_controller.category_update_post);
 
 module.exports = router;

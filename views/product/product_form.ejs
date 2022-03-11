@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <form action="" method="POST">
+        <label for="name">Product Name</label>
+        <input type="text" name="name" required value="<%= typeof product !==
+        'undefined' ? product.name : "" %>"/>
+
+        <label for="description">Product Description</label>
+        <input type="text" name="description" value="<%= typeof product !==
+        'undefined' ? product.description : ""%>"/>
+
+        <label for="manufacturer">Manufacturer</label>
+        <input type="text" name="manufacturer" required value="<%= typeof
+        product !== 'undefined' ? product.manufacturer : ""%>"/>
+
+        <label for="price">Price (in CHF)</label>
+        <input type="text" name="price" value="<%= typeof product !==
+        'undefined' ? product.price : ""%>"/>
+
+        <label for="category">Category</label>
+        <div>
+          <% categories.forEach(category => { %>
+          <div>
+            <label for="<%= category._id %> "><%= category.name %></label>
+            <input
+              name="category"
+              type="checkbox"
+              id="<%= category._id %>"
+              value="<%= category._id %>"
+            />
+          </div>
+          <% }) %>
+        </div>
+
+        <label for="link">Link to product</label>
+        <input type="text" name="link" value="<%= typeof product !== 'undefined'
+        ? product.link : ""%>"/>
+
+        <button type="submit">Add product</button>
+      </form>
+    </div>
+  </body>
+</html>

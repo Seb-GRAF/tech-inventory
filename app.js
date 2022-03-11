@@ -4,11 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
-require('dotenv').config();
 
 // mongoDB
+require('dotenv').config();
+const mongoDB = process.env.MONGO_URI;
 const mongoose = require('mongoose');
-mongoose.connect(`${process.env.MONGO_URI}`, {
+mongoose.connect(mongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
