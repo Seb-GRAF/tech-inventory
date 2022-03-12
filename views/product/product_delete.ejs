@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <h1>Delete <%= product.name %></h1>
+      <p>Do you really want to delete this product?</p>
+      <form action="" method="post">
+        <input
+          type="hidden"
+          name="productid"
+          id="productid"
+          required
+          value="<%= product._id %>"
+        />
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  </body>
+</html>

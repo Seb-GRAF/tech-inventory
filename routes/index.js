@@ -39,9 +39,6 @@ router.get('/product/:id', product_controller.product_detail);
 
 /// CATEGORY ROUTES ///
 
-// POST request for creating category
-router.post('/categories', category_controller.category_list);
-
 // GET request for deleting category
 router.get('/category/:id/delete', category_controller.category_delete_get);
 
@@ -56,6 +53,9 @@ router.post('/category/:id/update', category_controller.category_update_post);
 
 // GET all categories list
 router.get('/categories', category_controller.category_list);
+
+// POST request for creating category
+router.post('/categories', category_controller.category_add_post);
 
 // GET request for one category
 router.get('/category/:id', category_controller.category_products);

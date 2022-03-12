@@ -5,17 +5,17 @@ const async = require('async');
 const { body, validationResult } = require('express-validator');
 
 // handles create category on POST
-exports.category_list = [
+exports.category_add_post = [
   body('category', 'Category name required')
     .trim()
     .isLength({ min: 1 })
     .escape(),
 
   (req, res, next) => {
+    console.log('hello?');
     const errors = validationResult(req);
 
     let category = new Category({ name: req.body.category });
-    console.log(req);
 
     if (!errors.isEmpty()) {
       async.parallel(
@@ -45,10 +45,11 @@ exports.category_list = [
 
         if (found_category) res.redirect(found_category.url);
         else {
-          // Category.save((err) => {
-          //   if (err) return next(err);
-          //   res.redirect(category.url);
-          // });
+          category.save(function (err) {
+            if (err) return next(err);
+            console.log('after err (after category.save)');
+            res.redirect('/categories');
+          });
         }
       });
     }

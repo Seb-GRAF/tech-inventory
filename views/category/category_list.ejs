@@ -5,9 +5,15 @@
     <%- include('../partials/nav.ejs') %>
     <div class="container">
       <h1><%= title %></h1>
-      <form action="" method="POST">
+      <form action="/categories" method="POST">
         <label for="category">Add new category</label>
-        <input type="text" name="category" placeholder="category name" />
+        <input
+          type="text"
+          name="category"
+          id="category"
+          placeholder="category name"
+          required
+        />
         <button type="submit">Add</button>
       </form>
       <ul class="categories">

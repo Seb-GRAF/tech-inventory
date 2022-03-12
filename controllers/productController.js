@@ -154,12 +154,49 @@ exports.product_create_post = [
 
 // displays form to delete product on GET
 exports.product_delete_get = (req, res, next) => {
-  res.send('Not implemented yet');
+  async.parallel(
+    {
+      categories: function (callback) {
+        Category.find().sort({ name: 'ascending' }).exec(callback);
+      },
+      product: function (callback) {
+        Product.findById(req.params.id).exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) return next(err);
+
+      // No results
+      if (results.product == null) res.redirect('/');
+
+      // On success
+      res.render('./product/product_delete', {
+        title: 'Delete Product',
+        product: results.product,
+        categories: results.categories,
+      });
+    }
+  );
 };
 
 // handles delete product on POST
 exports.product_delete_post = (req, res, next) => {
-  res.send('Not implemented yet');
+  async.parallel(
+    {
+      product: function (callback) {
+        Product.findById(req.body.productid).exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) return next(err);
+
+      // On success
+      Product.findByIdAndRemove(req.body.productid, function deleteAuthor(err) {
+        if (err) return next(err);
+        res.redirect('/');
+      });
+    }
+  );
 };
 
 // displays form to update product on GET

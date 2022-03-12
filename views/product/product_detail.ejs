@@ -10,11 +10,13 @@
       <h2><%= product.price.toFixed(2) %> CHF</h2>
       <% } %>
       <p><%= product.description %></p>
+      <a href="<%= product.link %> " target="_blank">Get it here</a>
       <div>
         <% product.category.forEach(element => { %>
         <a href="<%= element.url %>">See more <%= element.name %> </a>
         <% }) %>
       </div>
+      <a href="/product/<%= product._id %>/delete">Remove product</a>
     </div>
   </body>
 </html>
