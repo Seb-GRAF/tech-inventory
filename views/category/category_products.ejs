@@ -5,7 +5,7 @@
     <%- include('../partials/nav.ejs') %>
     <div class="container">
       <h1><%= category.name %></h1>
-      <ul class="product-list">
+      <ul class="products">
         <% category_products.forEach(product => { %>
         <li>
           <a href="/product/<%= product._id %> ">

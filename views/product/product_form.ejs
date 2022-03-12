@@ -14,27 +14,20 @@
         'undefined' ? product.description : ""%>"/>
 
         <label for="manufacturer">Manufacturer</label>
-        <input type="text" name="manufacturer" required value="<%= typeof
-        product !== 'undefined' ? product.manufacturer : ""%>"/>
+        <input type="text" name="manufacturer" value="<%= typeof product !==
+        'undefined' ? product.manufacturer : ""%>"/>
 
         <label for="price">Price (in CHF)</label>
         <input type="text" name="price" value="<%= typeof product !==
         'undefined' ? product.price : ""%>"/>
 
         <label for="category">Category</label>
-        <div>
+
+        <select name="category" id="category">
           <% categories.forEach(category => { %>
-          <div>
-            <label for="<%= category._id %> "><%= category.name %></label>
-            <input
-              name="category"
-              type="checkbox"
-              id="<%= category._id %>"
-              value="<%= category._id %>"
-            />
-          </div>
+          <option value="<%= category._id %>"><%= category.name %></option>
           <% }) %>
-        </div>
+        </select>
 
         <label for="link">Link to product</label>
         <input type="text" name="link" value="<%= typeof product !== 'undefined'

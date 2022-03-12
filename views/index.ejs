@@ -4,15 +4,15 @@
   <body>
     <%- include('./partials/nav.ejs') %>
     <div class="container">
-      <h1>All products</h1>
-      <ul>
+      <h1 class="page-title">All products</h1>
+      <ul class="products">
         <% products.forEach(product => { %>
-        <li>
-          <a href="/product/<%= product._id %> ">
+        <a href="/product/<%= product._id %> ">
+          <li>
             <h2><%= product.name %></h2>
-          </a>
-          <h3><%= product.manufacturer %></h3>
-        </li>
+            <h3><%= product.manufacturer %></h3>
+          </li>
+        </a>
         <% }) %>
       </ul>
     </div>

@@ -103,7 +103,7 @@ exports.product_create_post = [
     console.log(req.body.category);
     // Extract the validation errors from a request
     const errors = validationResult(req);
-    console.log(errors);
+
     // Create a product object with escaped and trimmed data
     let product = new Product({
       name: req.body.name,
@@ -146,7 +146,6 @@ exports.product_create_post = [
       // Data from form is valid -> save product
       product.save(function (err) {
         if (err) return next(err);
-
         res.redirect(product.url);
       });
     }

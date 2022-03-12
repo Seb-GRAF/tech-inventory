@@ -6,7 +6,7 @@
     <li><a href="/products">All products</a></li>
     <li><a href="/product/create">Add product</a></li>
     <li class="categories">
-      <p>Categories</p>
+      <a href="/categories">Categories</a>
       <ul class="dropdown-menu">
         <% if (categories.length>0) { %>
           <% categories.forEach(category => { %>
@@ -15,6 +15,7 @@
             <% } else { %>
               <p>No categories</p>
             <% } %> 
+            <li><a href="/categories">Create category</a></li>
              
       </ul>
     </li>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <h1><%= title %></h1>
+      <form action="" method="POST">
+        <label for="category">Add new category</label>
+        <input type="text" name="category" placeholder="category name" />
+        <button type="submit">Add</button>
+      </form>
+      <ul class="categories">
+        <% categories.forEach(category => { %>
+        <li>
+          <a href="/category/<%= category._id %> ">
+            <h2><%= category.name %></h2>
+          </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -8,6 +8,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+/*//// NAV ////*/
 
 nav {
   box-sizing: border-box;
@@ -51,6 +52,49 @@ nav a {
 .categories:hover .dropdown-menu {
   visibility: visible;
 }
+
+/* //// MAIN CONTAINER //// */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 70rem;
+}
+
+.page-title {
+  align-self: center;
+  justify-self: center;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.products li {
+  width: 20rem;
+  background-color: gainsboro;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.products a {
+  text-decoration: none;
+  color: black;
+}
+
 form {
   display: flex;
   flex-direction: column;
