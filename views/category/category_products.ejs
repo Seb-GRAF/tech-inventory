@@ -5,6 +5,11 @@
     <%- include('../partials/nav.ejs') %>
     <div class="container">
       <h1><%= category.name %></h1>
+      <a href="/category/<%= category._id %>/delete">Delete</a>
+      <% if (category_products.length==0) { %>
+      <p>This category is empty</p>
+      <a href="/product/create">Create a new product</a>
+      <% } else { %>
       <ul class="products">
         <% category_products.forEach(product => { %>
         <li>
@@ -15,6 +20,7 @@
         </li>
         <% }) %>
       </ul>
+      <% } %>
     </div>
   </body>
 </html>

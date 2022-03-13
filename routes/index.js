@@ -3,10 +3,9 @@ var router = express.Router();
 
 // controller modules
 const product_controller = require('../controllers/productController');
-const manufacturer_controller = require('../controllers/manufacturerController');
 const category_controller = require('../controllers/categoryController');
 
-// GET home page
+/// HOME PAGE ///
 router.get('/', (req, res) => {
   res.redirect('/products');
 });
@@ -29,7 +28,7 @@ router.post('/product/:id/delete', product_controller.product_delete_post);
 router.get('/product/:id/update', product_controller.product_update_get);
 
 // POST request for updating product
-router.get('/product/:id/update', product_controller.product_update_post);
+router.post('/product/:id/update', product_controller.product_update_post);
 
 // GET all products list
 router.get('/products', product_controller.product_list);

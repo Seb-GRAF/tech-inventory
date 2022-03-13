@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="container">
+      <h1>Delete <%= category.name %></h1>
+      <p>Do you really want to delete this category?</p>
+      <form action="" method="post">
+        <input
+          type="hidden"
+          name="categoryid"
+          id="categoryid"
+          required
+          value="<%= category._id %>"
+        />
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  </body>
+</html>

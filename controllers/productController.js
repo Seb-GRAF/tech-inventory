@@ -1,5 +1,4 @@
 const Product = require('../models/product');
-const Manufacturer = require('../models/manufacturer');
 const Category = require('../models/category');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
@@ -191,20 +190,125 @@ exports.product_delete_post = (req, res, next) => {
       if (err) return next(err);
 
       // On success
-      Product.findByIdAndRemove(req.body.productid, function deleteAuthor(err) {
-        if (err) return next(err);
-        res.redirect('/');
-      });
+      Product.findByIdAndRemove(
+        req.body.productid,
+        function deleteProduct(err) {
+          if (err) return next(err);
+          res.redirect('/');
+        }
+      );
     }
   );
 };
 
 // displays form to update product on GET
 exports.product_update_get = (req, res, next) => {
-  res.send('Not implemented yet');
+  async.parallel(
+    {
+      product: function (callback) {
+        Product.findById(req.params.id).populate('category').exec(callback);
+      },
+      categories: function (callback) {
+        Category.find().sort({ name: 'ascending' }).exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) return next(err);
+
+      // Product no found
+      if (results.product == null) {
+        let err = new Error('Product not found');
+        err.status = 404;
+        return next(err);
+      }
+      // On success
+
+      res.render('./product/product_form', {
+        title: 'Edit product',
+        categories: results.categories,
+        product: results.product,
+      });
+    }
+  );
 };
 
 // handles update product on POST
-exports.product_update_post = (req, res, next) => {
-  res.send('Not implemented yet');
-};
+exports.product_update_post = [
+  // Convert the category to an array
+  (req, res, next) => {
+    console.log('hello?');
+    if (!(req.body.category instanceof Array)) {
+      if (typeof req.body.category === 'undefined') req.body.category = [];
+      else req.body.category = new Array(req.body.category);
+    }
+    next();
+  },
+  // validate and sanitize fields.
+  body('name', 'Please fill in the product name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('manufacturer', 'Please add the name of the manufacturer')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('category.*').escape(),
+  // Process request after validation
+  (req, res, next) => {
+    // Extracts the validation errors
+    const errors = validationResult(req);
+
+    // Create a product with escape/trimmed data and old id.
+    let product = new Product({
+      name: req.body.name,
+      manufacturer: req.body.manufacturer,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+      link: req.body.link,
+
+      // id param so it doesn't create a new ID
+      _id: req.params.id,
+    });
+    // If there are errors -> render form again with sanitized values
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          categories: function (callback) {
+            Category.find().sort({ name: 'ascending' }).exec(callback);
+          },
+        },
+        function (err, results) {
+          if (err) return next(err);
+
+          // Mark selected categories as checked.
+          for (let i = 0; i < results.categories.length; i++) {
+            if (product.category.indexOf(results.categories[i]._id) > -1) {
+              results.categories[i].checked = 'true';
+              console.log(results.categories[1].checked);
+            }
+          }
+          // on success
+          res.render('./product/product_form', {
+            title: 'Update product',
+            categories: results.categories,
+            product,
+            errors: errors.array(),
+          });
+        }
+      );
+      return;
+    } else {
+      // Data from form is valid -> update product
+      Product.findByIdAndUpdate(
+        req.params.id,
+        product,
+        {},
+        function (err, prod) {
+          if (err) return next(err);
+          res.redirect(prod.url);
+        }
+      );
+    }
+  },
+];
