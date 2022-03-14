@@ -123,13 +123,94 @@ exports.category_delete_post = (req, res, next) => {
 
 // displays form to update category on GET
 exports.category_update_get = (req, res, next) => {
-  res.send('Not implemented yet');
+  async.parallel(
+    {
+      category_products: function (callback) {
+        Product.find({ category: req.params.id }).exec(callback);
+      },
+      categories: function (callback) {
+        Category.find().sort({ name: 'ascending' }).exec(callback);
+      },
+      category: function (callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) return next(err);
+
+      // Product no found
+      if (results.category == null) {
+        let err = new Error('Product not found');
+        err.status = 404;
+        return next(err);
+      }
+      // On success
+
+      res.render('./category/category_update', {
+        title: 'Edit Category',
+        categories: results.categories,
+        category: results.category,
+        category_products: results.category_products,
+      });
+    }
+  );
 };
 
 // handles update category on POST
-exports.category_update_post = (req, res, next) => {
-  res.send('Not implemented yet');
-};
+exports.category_update_post = [
+  // validate and sanitize fields.
+  body('category', 'Please fill in the category name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  // Process request after validation
+  (req, res, next) => {
+    // Extracts the validation errors
+    const errors = validationResult(req);
+
+    // Create a category with escape/trimmed data and old id.
+    let category = new Category({
+      name: req.body.category,
+
+      // id param so it doesn't create a new ID
+      _id: req.params.id,
+    });
+    // If there are errors -> render form again with sanitized values
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          categories: function (callback) {
+            Category.find().sort({ name: 'ascending' }).exec(callback);
+          },
+        },
+        function (err, results) {
+          if (err) return next(err);
+
+          // on success
+          res.render('./category/category_update', {
+            title: 'Update category',
+            categories: results.categories,
+            category,
+            errors: errors.array(),
+          });
+        }
+      );
+      return;
+    } else {
+      // Data from form is valid -> update category
+      Category.findByIdAndUpdate(
+        req.params.id,
+        category,
+        {},
+        function (err, cat) {
+          if (err) return next(err);
+          res.redirect(cat.url);
+        }
+      );
+    }
+  },
+];
 
 // displays all products for one category
 exports.category_products = (req, res, next) => {

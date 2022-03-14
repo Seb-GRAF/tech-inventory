@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
   price: { type: Number },
   category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
   link: { type: String },
+  image: { type: String },
 });
 
 ProductSchema.virtual('url').get(function () {

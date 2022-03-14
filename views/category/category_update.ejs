@@ -4,9 +4,16 @@
   <body>
     <%- include('../partials/nav.ejs') %>
     <div class="container">
-      <h1><%= category.name %></h1>
+      <form action="" method="POST">
+        <input
+          type="text"
+          name="category"
+          id="category"
+          value="<%= category.name %>"
+        />
+        <button type="submit">Save</button>
+      </form>
       <a href="/category/<%= category._id %>/delete">Delete</a>
-      <a href="/category/<%= category._id %>/update">Edit</a>
       <% if (category_products.length==0) { %>
       <p>This category is empty</p>
       <a href="/product/create">Create a new product</a>

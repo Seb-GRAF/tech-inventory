@@ -6,7 +6,9 @@
     <div class="container">
       <h1><%= product.name %></h1>
       <h2><%= product.manufacturer %></h2>
-      <% if (product.price !== null) { %>
+      <% if (product.image !== "") { %>
+      <img src="/uploads/<%= product.image %> " alt="product-image" />
+      <% } %> <% if (product.price !== null) { %>
       <h2><%= product.price.toFixed(2) %> CHF</h2>
       <% } %>
       <p><%= product.description %></p>

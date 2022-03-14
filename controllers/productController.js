@@ -3,6 +3,18 @@ const Category = require('../models/category');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
 
+// multer file storage
+const multer = require('multer');
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, './public/uploads');
+  },
+  filename: (req, file, callback) => {
+    callback(null, Date.now() + '--' + file.originalname.replace(/\s+/g, '-'));
+  },
+});
+const upload = multer({ storage: fileStorageEngine });
+
 // displays all products
 exports.product_list = (req, res, next) => {
   async.parallel(
@@ -78,6 +90,7 @@ exports.product_create_get = (req, res, next) => {
 
 // handles create product on POST
 exports.product_create_post = [
+  upload.single('image'),
   (req, res, next) => {
     if (!(req.body.category instanceof Array)) {
       if (typeof req.body.category === 'undefined') req.body.category = [];
@@ -99,7 +112,6 @@ exports.product_create_post = [
 
   // process request after validation and sanitization
   (req, res, next) => {
-    console.log(req.body.category);
     // Extract the validation errors from a request
     const errors = validationResult(req);
 
@@ -111,6 +123,7 @@ exports.product_create_post = [
       price: req.body.price,
       category: req.body.category,
       link: req.body.link,
+      image: req.file !== undefined ? req.file.filename : '',
     });
 
     // If there are errors -> render form again with sanitized values
@@ -236,7 +249,6 @@ exports.product_update_get = (req, res, next) => {
 exports.product_update_post = [
   // Convert the category to an array
   (req, res, next) => {
-    console.log('hello?');
     if (!(req.body.category instanceof Array)) {
       if (typeof req.body.category === 'undefined') req.body.category = [];
       else req.body.category = new Array(req.body.category);

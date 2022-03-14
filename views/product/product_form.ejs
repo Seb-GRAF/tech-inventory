@@ -4,7 +4,7 @@
   <body>
     <%- include('../partials/nav.ejs') %>
     <div class="container">
-      <form method="POST" action="">
+      <form method="POST" action="" enctype="multipart/form-data">
         <label for="name">Product Name</label>
         <input type="text" name="name" required value="<%= typeof product !==
         'undefined' ? product.name : "" %>"/>
@@ -22,7 +22,6 @@
         'undefined' ? product.price : ""%>"/>
 
         <label for="category">Category</label>
-
         <select name="category" id="category" value="qwe">
           <% categories.forEach(category => { %>
           <option value="<%= category._id %>" <%= (typeof product !==
@@ -33,6 +32,10 @@
         <label for="link">Link to product</label>
         <input type="text" name="link" value="<%= typeof product !== 'undefined'
         ? product.link : ""%>"/>
+
+<label for="image">Product image</label>
+<input type="file" name="image" id="image">
+
         <button type="submit">Submit</button>
       </form>
     </div>
