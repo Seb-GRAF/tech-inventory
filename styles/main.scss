@@ -12,7 +12,7 @@
   padding: 0;
 }
 html {
-  background-color: white;
+  background-color: $grey;
   font-family: 'Poppins';
   min-height: 100%;
 }
@@ -23,15 +23,14 @@ body {
   align-items: center;
   flex-direction: column;
   box-sizing: border-box;
-  padding-inline: 1rem;
-  padding-bottom: 1rem;
+  padding-inline: 2rem;
+  padding-bottom: 2rem;
   flex: 1;
   min-height: 100vh;
 }
 .container {
-  background-color: $grey;
+  background-color: white;
   display: flex;
-  //   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex: 1;

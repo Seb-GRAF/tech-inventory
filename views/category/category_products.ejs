@@ -12,8 +12,10 @@
         </div>
       </div>
       <% if (category_products.length==0) { %>
-      <p>This category is empty</p>
-      <a href="/product/create">Create a new product</a>
+      <div class="empty-category">
+        <p>This category is empty</p>
+        <a href="/product/create">Create a new product</a>
+      </div>
       <% } else { %>
       <ul class="products">
         <% category_products.forEach(product => { %>

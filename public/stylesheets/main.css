@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 nav {
   box-sizing: border-box;
@@ -17,21 +18,34 @@ nav .categories {
   position: relative;
   cursor: pointer;
 }
+nav .categories::before {
+  content: "⌃";
+  position: absolute;
+  right: -1rem;
+  top: 0;
+  text-align: center;
+  text-justify: center;
+  transform: rotate(180deg);
+  transform-origin: center;
+}
+nav .categories:hover::before {
+  transform: rotate(0deg);
+  top: 20%;
+}
 nav .categories .dropdown-menu {
   cursor: default;
   visibility: hidden;
   box-sizing: border-box;
   position: absolute;
   display: flex;
-  right: 0;
-  top: 130%;
-  width: 18rem;
+  right: -1rem;
+  top: 178%;
   padding: 1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #8ed3d9;
+  background-color: #edeae5;
 }
 nav .categories .dropdown-menu a {
   text-decoration: none;
@@ -42,10 +56,10 @@ nav .categories .dropdown-menu a:hover {
 nav .categories .dropdown-menu::after {
   content: "";
   position: absolute;
-  top: -30%;
+  top: -2rem;
   right: 0;
-  width: 5rem;
-  height: 100%;
+  width: 7rem;
+  height: 2rem;
 }
 nav .categories:hover .dropdown-menu {
   visibility: visible;
@@ -96,12 +110,13 @@ nav .categories:hover .dropdown-menu {
 }
 .products a {
   list-style: none;
-  background-color: #fef9c7;
+  background-color: white;
   box-sizing: border-box;
   padding: 1rem;
   width: 15rem;
   height: 20rem;
   text-decoration: none;
+  box-shadow: #00000023 0 0 20px;
 }
 .products a li {
   height: 100%;
@@ -125,6 +140,19 @@ nav .categories:hover .dropdown-menu {
   width: 100%;
   height: 12rem;
   object-fit: cover;
+}
+
+.empty-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+.empty-category p,
+.empty-category a {
+  font-size: 1.4rem;
 }
 
 .product-detail {
@@ -237,7 +265,7 @@ form .bottom button {
 }
 
 html {
-  background-color: white;
+  background-color: #edeae5;
   font-family: "Poppins";
   min-height: 100%;
 }
@@ -249,14 +277,14 @@ body {
   align-items: center;
   flex-direction: column;
   box-sizing: border-box;
-  padding-inline: 1rem;
-  padding-bottom: 1rem;
+  padding-inline: 2rem;
+  padding-bottom: 2rem;
   flex: 1;
   min-height: 100vh;
 }
 
 .container {
-  background-color: #edeae5;
+  background-color: white;
   display: flex;
   align-items: center;
   flex-direction: column;

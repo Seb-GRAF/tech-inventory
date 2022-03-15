@@ -16,21 +16,38 @@ nav {
   .categories {
     position: relative;
     cursor: pointer;
+    &::before {
+      content: '⌃';
+      position: absolute;
+      right: -1rem;
+      top: 0;
+      text-align: center;
+      text-justify: center;
+      // transform: translateY(-100%);
+      // line-height: -1px;
+      transform: rotate(180deg);
+      transform-origin: center;
+    }
+    &:hover {
+      &::before {
+        transform: rotate(0deg);
+        top: 20%;
+      }
+    }
     .dropdown-menu {
       cursor: default;
       visibility: hidden;
       box-sizing: border-box;
       position: absolute;
       display: flex;
-      right: 0;
-      top: 130%;
-      width: 18rem;
+      right: -1rem;
+      top: 178%;
       padding: 1rem;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: $accent-light;
+      background-color: $grey;
       a {
         text-decoration: none;
       }
@@ -40,10 +57,10 @@ nav {
       &::after {
         content: '';
         position: absolute;
-        top: -30%;
+        top: -2rem;
         right: 0;
-        width: 5rem;
-        height: 100%;
+        width: 7rem;
+        height: 2rem;
       }
     }
     &:hover {

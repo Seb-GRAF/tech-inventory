@@ -8,12 +8,14 @@
   gap: 1rem;
   a {
     list-style: none;
-    background-color: $light;
+    background-color: white;
     box-sizing: border-box;
     padding: 1rem;
     width: 15rem;
     height: 20rem;
     text-decoration: none;
+    // border: 1px solid black;
+    box-shadow: #00000023 0 0 20px;
     li {
       height: 100%;
       width: 100%;
@@ -38,4 +40,16 @@
       object-fit: cover;
     }
   }
+}
+.empty-category {
+  p,
+  a {
+    font-size: 1.4rem;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
+  gap: 1rem;
 }
