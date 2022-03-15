@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const compression = require('compression');
+const helmet = require('helmet');
 
 // mongoDB
 require('dotenv').config();
@@ -15,6 +17,10 @@ mongoose.connect(mongoDB, {
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection ERROR'));
+
+// middlewares
+app.use(compression());
+app.use(helmet());
 
 // router
 const indexRouter = require('./routes/index');
