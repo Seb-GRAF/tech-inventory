@@ -105,8 +105,9 @@ nav .categories:hover .dropdown-menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .products a {
   list-style: none;
@@ -116,7 +117,8 @@ nav .categories:hover .dropdown-menu {
   width: 15rem;
   height: 20rem;
   text-decoration: none;
-  box-shadow: #00000023 0 0 20px;
+  flex-shrink: 0;
+  background-color: #fef9c7;
 }
 .products a li {
   height: 100%;
@@ -342,4 +344,46 @@ button {
 button:hover {
   background-color: #8ed3d9;
   border: #8ed3d9 solid 1px;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding-inline: 0;
+  }
+
+  .container {
+    padding-top: 2rem;
+  }
+
+  nav h1 {
+    font-size: 1rem;
+    position: relative;
+    color: transparent;
+    font-size: 0.5rem;
+  }
+  nav h1:after {
+    position: absolute;
+    content: "TI";
+    color: black;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+  }
+  nav a {
+    font-size: 0.8rem;
+  }
+  nav ul {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+  nav ul .categories .dropdown-menu {
+    top: 100%;
+    right: -2rem;
+    width: 100vw;
+  }
+
+  .products a {
+    width: 90%;
+  }
 }

@@ -4,8 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
   gap: 1rem;
+  flex-wrap: wrap;
   a {
     list-style: none;
     background-color: white;
@@ -14,8 +15,8 @@
     width: 15rem;
     height: 20rem;
     text-decoration: none;
-    // border: 1px solid black;
-    box-shadow: #00000023 0 0 20px;
+    flex-shrink: 0;
+    background-color: $light;
     li {
       height: 100%;
       width: 100%;

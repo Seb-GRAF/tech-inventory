@@ -86,3 +86,47 @@ button {
     border: $accent-light solid 1px;
   }
 }
+@media (max-width: 700px) {
+  body {
+    padding-inline: 0;
+  }
+  .container {
+    padding-top: 2rem;
+  }
+  nav {
+    h1 {
+      font-size: 1rem;
+      position: relative;
+      color: transparent;
+      font-size: 0.5rem;
+      &:after {
+        position: absolute;
+        content: 'TI';
+        color: black;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+      }
+    }
+    a {
+      font-size: 0.8rem;
+    }
+    ul {
+      gap: 1rem;
+      padding-right: 1rem;
+      .categories {
+        .dropdown-menu {
+          top: 100%;
+          right: -2rem;
+          width: 100vw;
+        }
+      }
+    }
+  }
+  .products {
+    a {
+      width: 90%;
+    }
+  }
+}
