@@ -9,8 +9,13 @@
         <% products.forEach(product => { %>
         <a href="/product/<%= product._id %> ">
           <li>
-            <h2><%= product.name %></h2>
-            <h3><%= product.manufacturer %></h3>
+            <div class="product-title">
+              <h2><%= product.name %></h2>
+              <h3><%= product.manufacturer %></h3>
+            </div>
+            <% if (product.image !== "" && product.image !== undefined) { %>
+            <img src="/uploads/<%= product.image %> " alt="product-image" />
+            <% } %>
           </li>
         </a>
         <% }) %>

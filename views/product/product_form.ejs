@@ -4,14 +4,15 @@
   <body>
     <%- include('../partials/nav.ejs') %>
     <div class="container">
+      <h1 class="page-title"><%= title %> </h1>
       <form method="POST" action="" enctype="multipart/form-data">
         <label for="name">Product Name</label>
         <input type="text" name="name" required value="<%= typeof product !==
         'undefined' ? product.name : "" %>"/>
 
         <label for="description">Product Description</label>
-        <input type="text" name="description" value="<%= typeof product !==
-        'undefined' ? product.description : ""%>"/>
+        <textarea name="description" value="<%= typeof product !==
+        'undefined' ? product.description : ""%>"></textarea>
 
         <label for="manufacturer">Manufacturer</label>
         <input type="text" name="manufacturer" value="<%= typeof product !==
@@ -29,14 +30,20 @@
           <% }) %>
         </select>
 
+        
         <label for="link">Link to product</label>
         <input type="text" name="link" value="<%= typeof product !== 'undefined'
         ? product.link : ""%>"/>
 
-<label for="image">Product image</label>
-<input type="file" name="image" id="image">
+        <div class="bottom">
+            <label for="image">Add product image
 
-        <button type="submit">Submit</button>
+              <input type="file" name="image" id="image">
+            </label>
+          
+
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   </body>

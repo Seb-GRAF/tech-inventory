@@ -1,0 +1,61 @@
+@import 'variables';
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 25rem;
+  label {
+    align-self: flex-start;
+  }
+  input,
+  select,
+  textarea {
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border: solid 1px black;
+    min-height: 1.5rem;
+    width: 100%;
+    outline: none;
+    &:focus {
+      background-color: $light;
+    }
+  }
+  textarea {
+    resize: vertical;
+    min-height: 5rem;
+    max-height: 20rem;
+  }
+  option {
+    text-transform: capitalize;
+  }
+  .bottom {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    label {
+      height: 100%;
+      width: 100%;
+      border: solid 1px black;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      input[type='file'] {
+        display: none;
+      }
+      transition: 300ms;
+      &:hover {
+        background-color: $accent-light;
+        border: $accent-light solid 1px;
+      }
+    }
+    button {
+      padding-block: 0;
+    }
+  }
+}

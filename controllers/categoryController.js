@@ -20,7 +20,10 @@ exports.category_add_post = [
       async.parallel(
         {
           categories: function (callback) {
-            Category.find().sort({ name: 'ascending' }).exec(callback);
+            Category.find()
+              .sort({ name: 1 })
+              .collation({ locale: 'en', caseLevel: true })
+              .exec(callback);
           },
         },
         function (err, results) {
@@ -254,7 +257,10 @@ exports.category_list = (req, res, next) => {
   async.parallel(
     {
       categories: function (callback) {
-        Category.find().sort({ name: 'ascending' }).exec(callback);
+        Category.find()
+          .collation({ locale: 'en', strength: 2 })
+          .sort({ name: 1 })
+          .exec(callback);
       },
       product: function (callback) {
         Product.find().exec(callback);

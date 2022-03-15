@@ -3,29 +3,39 @@
   <%- include('../partials/head.ejs') %>
   <body>
     <%- include('../partials/nav.ejs') %>
-    <div class="container">
-      <form action="" method="POST">
-        <input
-          type="text"
-          name="category"
-          id="category"
-          value="<%= category.name %>"
-        />
-        <button type="submit">Save</button>
-      </form>
-      <a href="/category/<%= category._id %>/delete">Delete</a>
+    <div class="container category-products">
+      <div class="page-title">
+        <form action="" method="POST">
+          <input
+            type="text"
+            name="category"
+            id="category"
+            value="<%= category.name %>"
+          />
+          <button type="submit">Save</button>
+        </form>
+        <div class="edit-delete">
+          <a href="/category/<%= category._id %>/delete">Delete</a>
+          <a href="/category/<%= category._id %>/update">Edit</a>
+        </div>
+      </div>
       <% if (category_products.length==0) { %>
       <p>This category is empty</p>
       <a href="/product/create">Create a new product</a>
       <% } else { %>
       <ul class="products">
         <% category_products.forEach(product => { %>
-        <li>
-          <a href="/product/<%= product._id %> ">
-            <h2><%= product.name %></h2>
-          </a>
-          <h3><%= product.manufacturer %></h3>
-        </li>
+        <a href="/product/<%= product._id %> ">
+          <li>
+            <div class="product-title">
+              <h2><%= product.name %></h2>
+              <h3><%= product.manufacturer %></h3>
+            </div>
+            <% if (product.image !== "" && product.image !== undefined) { %>
+            <img src="/uploads/<%= product.image %> " alt="product-image" />
+            <% } %>
+          </li>
+        </a>
         <% }) %>
       </ul>
       <% } %>

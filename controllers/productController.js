@@ -247,6 +247,7 @@ exports.product_update_get = (req, res, next) => {
 
 // handles update product on POST
 exports.product_update_post = [
+  upload.single('image'),
   // Convert the category to an array
   (req, res, next) => {
     if (!(req.body.category instanceof Array)) {
@@ -278,6 +279,7 @@ exports.product_update_post = [
       price: req.body.price,
       category: req.body.category,
       link: req.body.link,
+      image: req.file !== undefined ? req.file.filename : req.body.image,
 
       // id param so it doesn't create a new ID
       _id: req.params.id,

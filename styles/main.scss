@@ -1,0 +1,89 @@
+@import 'nav';
+@import 'variables';
+@import 'categories';
+@import 'product-list';
+@import 'product-detail';
+@import 'form';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+html {
+  background-color: white;
+  font-family: 'Poppins';
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+  flex: 1;
+  min-height: 100vh;
+}
+.container {
+  background-color: $grey;
+  display: flex;
+  //   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 4rem;
+  .page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    .edit-delete {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
+a {
+  text-transform: capitalize;
+  text-decoration: underline solid 1px black;
+  text-underline-offset: 4px;
+  color: black;
+  font-weight: 300;
+  margin: 0;
+  cursor: pointer;
+}
+.site-title {
+  a {
+    text-decoration: none;
+  }
+}
+h1 {
+  text-transform: capitalize;
+  color: black;
+  font-weight: 500;
+  margin: 0;
+}
+button {
+  background-color: transparent;
+  border: black solid 1px;
+  padding: 1em 2em;
+  width: fit-content;
+  font-size: 1rem;
+  font-weight: 200;
+  transition: border 300ms, color 300ms;
+  &:hover {
+    background-color: $accent-light;
+    border: $accent-light solid 1px;
+  }
+}
