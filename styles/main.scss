@@ -80,6 +80,7 @@ button {
   width: fit-content;
   font-size: 1rem;
   font-weight: 200;
+  color: black;
   transition: border 300ms, color 300ms;
   &:hover {
     background-color: $accent-light;
@@ -89,6 +90,7 @@ button {
 @media (max-width: 700px) {
   body {
     padding-inline: 0;
+    padding-bottom: 0;
   }
   .container {
     padding-top: 2rem;
@@ -127,6 +129,13 @@ button {
   .products {
     a {
       width: 90%;
+      height: 30rem;
+      li {
+        img {
+          height: 23rem;
+          object-fit: contain;
+        }
+      }
     }
   }
 }

@@ -7,8 +7,10 @@ form {
   align-items: center;
   width: 100%;
   max-width: 25rem;
+  border-radius: 0;
   label {
     align-self: flex-start;
+    border-radius: 0;
   }
   input,
   select,
@@ -19,6 +21,7 @@ form {
     min-height: 1.5rem;
     width: 100%;
     outline: none;
+    border-radius: 0;
     &:focus {
       background-color: $light;
     }
@@ -27,8 +30,10 @@ form {
     resize: vertical;
     min-height: 5rem;
     max-height: 20rem;
+    border-radius: 0;
   }
   option {
+    border-radius: 0;
     text-transform: capitalize;
   }
   .bottom {
