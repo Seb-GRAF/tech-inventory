@@ -87,7 +87,7 @@ button {
     border: $accent-light solid 1px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   body {
     padding-inline: 0;
     padding-bottom: 0;
@@ -136,6 +136,11 @@ button {
           object-fit: contain;
         }
       }
+    }
+  }
+  .bottom-reached {
+    &:after {
+      content: "You've reached the bottom!";
     }
   }
 }

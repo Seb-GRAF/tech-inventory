@@ -114,6 +114,7 @@ nav .categories:hover .dropdown-menu {
   min-width: 100%;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 .products a {
   list-style: none;
@@ -225,6 +226,7 @@ form textarea {
   margin-bottom: 1rem;
   background-color: transparent;
   border: solid 1px black;
+  color: black;
   min-height: 1.5rem;
   width: 100%;
   outline: none;
@@ -361,7 +363,7 @@ button:hover {
   border: #8ed3d9 solid 1px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   body {
     padding-inline: 0;
     padding-bottom: 0;
@@ -406,5 +408,9 @@ button:hover {
   .products a li img {
     height: 23rem;
     object-fit: contain;
+  }
+
+  .bottom-reached:after {
+    content: "You've reached the bottom!";
   }
 }
